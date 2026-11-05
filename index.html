@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="吕昆泽 Kunze Lyu｜墨尔本大学数据科学｜数据工程 / 数据分析实习求职｜SQL · PySpark · 数据清洗与校验">
+<meta name="author" content="Kunze Lyu">
+<meta property="og:type" content="website">
+<meta property="og:title" content="吕昆泽 Kunze Lyu · Data Science Portfolio">
+<meta property="og:description" content="SQL, PySpark and data validation projects with every number traceable to code on GitHub.">
+<meta name="theme-color" content="#5B3BC4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Crect x='1' y='10' width='4' height='7' rx='1' fill='%23CBBDF3'/%3E%3Crect x='7' y='6' width='4' height='11' rx='1' fill='%239A82E0'/%3E%3Crect x='13' y='1' width='4' height='16' rx='1' fill='%235B3BC4'/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>吕昆泽 Kunze Lyu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: report-style — section label in a left rail, content right; every project carries a small chart drawn from its own README numbers. Tokens mirror DESIGN.md. */
+:root{
+  --bg:#F8F7FB; --surface:#FFFFFF; --ink:#1C1830; --muted:#5E5873; --line:#E3DEEC;
+  --primary:#5B3BC4; --primary-hover:#4A2EA8; --primary-soft:#EEE9FB; --on-primary:#FFFFFF; --ok:#1F7A4D;
+  --base:#8E87A3;           /* chart baseline / comparison series (deliberately neutral) */
+  --seq2:#9A82E0; --seq3:#CBBDF3; /* sequential steps of primary */
+  --track:#F1EEF6; --heat-lo:#F1ECFC; --heat-hi:#2E1A78; --heat-ink-lo:#1C1830; --heat-ink-hi:#FFFFFF;
+  --shadow:0 6px 20px -8px rgba(91,59,196,.28);
+  --sans:"IBM Plex Sans","PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,"PingFang SC",monospace;
+  --maxw:1080px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121019; --surface:#1A1724; --ink:#ECE9F5; --muted:#A49DB8; --line:#2D2940;
+  --primary:#A88BFA; --primary-hover:#C0A9FF; --primary-soft:#251E3C; --on-primary:#140F24; --ok:#5FCB93;
+  --base:#6E6787; --seq2:#7A5FD0; --seq3:#4E3A8F; --track:#221E2F; --heat-lo:#251F38; --heat-hi:#CDB9FF; --heat-ink-lo:#ECE9F5; --heat-ink-hi:#140F24;
+  --shadow:0 6px 20px -8px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121019; --surface:#1A1724; --ink:#ECE9F5; --muted:#A49DB8; --line:#2D2940;
+  --primary:#A88BFA; --primary-hover:#C0A9FF; --primary-soft:#251E3C; --on-primary:#140F24; --ok:#5FCB93;
+  --base:#6E6787; --seq2:#7A5FD0; --seq3:#4E3A8F; --track:#221E2F; --heat-lo:#251F38; --heat-hi:#CDB9FF; --heat-ink-lo:#ECE9F5; --heat-ink-hi:#140F24;
+  --shadow:0 6px 20px -8px rgba(0,0,0,.6); color-scheme:dark}
+
+:root:not([data-lang="en"]) [lang="en"]{display:none!important}
+:root[data-lang="en"] [lang="zh"]{display:none!important}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--primary);text-decoration:none}
+a:hover{color:var(--primary-hover);text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:720px){.wrap{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.micro{font-family:var(--mono);font-size:12px;line-height:1.4;letter-spacing:.06em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--primary);color:var(--on-primary);padding:8px 12px;border-radius:4px;z-index:30}
+.skip:focus{left:16px}
+
+/* nav */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.brand{font-weight:600;color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand-mark{width:18px;height:18px}
+.nav ul{display:flex;gap:20px;list-style:none;margin:0 0 0 auto;padding:0;font-size:14px}
+.nav ul a{color:var(--muted);position:relative;padding-block:4px}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav ul a:hover{color:var(--ink);text-decoration:none}
+.nav ul a.active{color:var(--ink)}
+.nav ul a.active::after{transform:scaleX(1)}
+.toggles{display:flex;gap:6px}
+.tbtn{font:500 13px/1 var(--mono);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:4px;height:32px;min-width:40px;padding:0 10px;cursor:pointer}
+.tbtn:hover{border-color:var(--primary);color:var(--primary)}
+@media (max-width:760px){.nav ul{display:none}.toggles{margin-left:auto}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 15px/1 var(--sans);height:44px;padding:0 18px;border-radius:4px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,transform .15s}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-primary{background:var(--primary);color:var(--on-primary)}
+.btn-primary:hover{background:var(--primary-hover);color:var(--on-primary);text-decoration:none;transform:translateY(-1px)}
+.btn-primary:hover svg{animation:nudge .6s ease-in-out infinite alternate}
+@keyframes nudge{to{transform:translateY(3px)}}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.quiet{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500}
+.quiet svg{width:14px;height:14px;transition:transform .2s}
+.quiet:hover svg{transform:translate(2px,-2px)}
+
+/* hero */
+.hero{padding-block:64px 48px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero h1{font-size:44px;line-height:1.15;font-weight:600;letter-spacing:-.01em}
+.hero h1 .en-name{display:block;font-size:20px;line-height:1.4;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:8px;font-family:var(--mono)}
+.role{margin-top:24px;font-size:18px;font-weight:500}
+.lede{margin-top:12px;font-size:18px;line-height:1.65;color:var(--muted);max-width:60ch}
+.avail{margin-top:24px;display:inline-flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:14px;padding:8px 12px;border-radius:4px;background:var(--primary-soft);color:var(--ink)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none;box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 50%,transparent);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* pipeline viz */
+.pipe{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:18px 18px 14px}
+.pipe-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.pipe-title{font-size:14px;font-weight:600}
+#flow{display:block;width:100%;height:190px;margin-top:10px}
+.stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:8px}
+.stage .n{font:500 16px/1.2 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.stage .n.hl{color:var(--primary)}
+.stage .l{font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px}
+.pipe-note{margin-top:10px;font-size:12px;color:var(--muted)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:36px}.hero{padding-block:44px 36px}.hero h1{font-size:32px}}
+
+/* ledger strip */
+.ledger{border-block:1px solid var(--line);background:var(--surface)}
+.ledger dl{margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.ledger dl>div{padding:20px 20px 20px 0;display:flex;flex-direction:column;gap:6px}
+.ledger dl>div+div{padding-left:20px;border-left:1px solid var(--line)}
+.ledger dt{font:500 28px/1 var(--mono);color:var(--primary);font-variant-numeric:tabular-nums}
+.ledger dd{margin:0;font-size:14px;color:var(--muted);line-height:1.45}
+@media (max-width:760px){.ledger dl{grid-template-columns:repeat(2,minmax(0,1fr))}.ledger dl>div:nth-child(3){padding-left:0;border-left:0}.ledger dl>div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* sections */
+section.block{padding-block:96px 0}
+section.block:last-of-type{padding-bottom:96px}
+.block>.wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px}
+.rail{position:sticky;top:88px;align-self:start}
+.block h2{font-size:28px;line-height:1.25;font-weight:600}
+.block .rail p{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.55}
+@media (max-width:860px){.block>.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.rail{position:static}section.block{padding-top:64px}section.block:last-of-type{padding-bottom:64px}}
+
+/* projects */
+.projects{display:flex;flex-direction:column;gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;transition:box-shadow .2s,border-color .2s,transform .2s}
+.proj:hover{box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--primary) 35%,var(--line))}
+.proj.flash,details.more.flash{animation:flash 1.2s}
+@keyframes flash{0%,40%{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}}
+.proj-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.proj h3{font-size:20px;line-height:1.35;font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.date{font:400 13px/1 var(--mono);color:var(--muted)}
+.badge{font:500 12px/1 var(--sans);padding:5px 8px;border-radius:4px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.badge.solo{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.question{margin-top:10px;color:var(--ink);max-width:68ch}
+.role-line{margin-top:6px;font-size:14px;color:var(--muted);max-width:68ch}
+.body2{margin-top:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+.body2 .metrics{margin-top:0}
+@media (max-width:760px){.body2{grid-template-columns:1fr}}
+.metrics{margin-top:20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.metric{padding:14px 16px 14px 0}
+.metric + .metric{padding-left:16px;border-left:1px solid var(--line)}
+.metrics.stacked{grid-template-columns:1fr}
+.metrics.stacked .metric{padding:12px 0;border-left:0}
+.metrics.stacked .metric+.metric{border-top:1px solid var(--line)}
+.metric .v{font:500 28px/1 var(--mono);color:var(--primary);font-variant-numeric:tabular-nums;white-space:nowrap}
+.metric .v small{font-size:14px;color:var(--muted);margin-left:4px;font-weight:400}
+.metric .k{margin-top:8px;font-size:13px;line-height:1.45;color:var(--muted)}
+@media (max-width:600px){.metrics{grid-template-columns:1fr}.metric,.metric + .metric{padding:12px 0;border-left:0}.metric + .metric{border-top:1px solid var(--line)}}
+.caveat{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.55;max-width:72ch}
+.proj-foot{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between}
+.stack{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.stack li{font:400 12px/1 var(--mono);padding:6px 8px;border-radius:4px;background:var(--primary-soft);color:var(--ink)}
+
+/* charts */
+.chart{min-width:0}
+.chart-title{font-size:13px;font-weight:600;color:var(--ink)}
+.chart-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+.sw.p{background:var(--primary)} .sw.b{background:var(--base)}
+.bars{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.group-label{font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:4px}
+.bar-row{display:grid;grid-template-columns:72px minmax(0,1fr) 64px;gap:10px;align-items:center;font-size:13px}
+.bar-row .lab{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .val{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);text-align:right;font-size:13px}
+.track{height:14px;background:var(--track);border-radius:0 4px 4px 0;position:relative}
+.fill{height:100%;border-radius:0 4px 4px 0;background:var(--primary);transform-origin:left;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.fill.b{background:var(--base)}
+.fill:hover{filter:brightness(1.12)}
+.pre .fill{transform:scaleX(0)}
+.axis{display:grid;grid-template-columns:72px minmax(0,1fr) 64px;gap:10px;font:400 11px/1 var(--mono);color:var(--muted);margin-top:2px}
+.axis .ticks{display:flex;justify-content:space-between}
+
+/* tabs */
+.tabs{margin-top:20px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.tablist{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;background:var(--bg)}
+.tab{font:500 13px/1 var(--sans);padding:12px 14px;border:0;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--primary);border-bottom-color:var(--primary)}
+.tabpanel{padding:18px}
+.tabpanel[hidden]{display:none}
+.tabpanel.enter{animation:fadein .35s ease}
+@keyframes fadein{from{opacity:.2;transform:translateY(4px)}}
+.ph{border:1px dashed color-mix(in srgb,var(--primary) 45%,var(--line));border-radius:6px;aspect-ratio:16/6;max-width:100%;display:grid;place-items:center;text-align:center;padding:16px;color:var(--muted);font-size:14px}
+.ph .mono{display:block;margin-top:4px;font-size:12px;word-break:break-all}
+
+/* stacked share bar */
+.share{display:flex;height:28px;gap:2px;margin-top:14px}
+.share>div{height:100%;display:flex;align-items:center;justify-content:center;font:500 12px/1 var(--mono);color:var(--on-primary);transform-origin:left;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.share>div:first-child{border-radius:4px 0 0 4px}.share>div:last-child{border-radius:0 4px 4px 0}
+.share .s1{background:var(--seq3);color:var(--ink)} .share .s2{background:var(--seq2)} .share .s3{background:var(--primary)}
+.pre .share>div{transform:scaleX(0)}
+.share-key{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12px;color:var(--muted)}
+.share-key span{display:inline-flex;gap:6px;align-items:center}
+
+/* SQL checklist */
+.checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px}
+.checks li{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.45;color:var(--ink);padding:6px 0;border-bottom:1px dashed var(--line)}
+.ck{width:16px;height:16px;flex:none;margin-top:1px;border-radius:4px;background:var(--primary-soft);color:var(--ok);display:grid;place-items:center;transition:transform .3s,background .3s}
+.ck svg{width:11px;height:11px}
+.pre .checks .ck{transform:scale(0)}
+@media (max-width:600px){.checks{grid-template-columns:1fr}}
+
+/* EM loop */
+.em{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.em svg{width:170px;height:170px;flex:none;max-width:100%}
+.em .em-txt{flex:1 1 200px;min-width:0;font-size:13px;color:var(--muted);line-height:1.55}
+
+/* skills matrix */
+.matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+.matrix th,.matrix td{padding:10px 6px;text-align:center;border-bottom:1px solid var(--line)}
+.matrix tr:last-child td,.matrix tr:last-child th{border-bottom:0}
+.matrix thead th{font:500 12px/1.3 var(--sans);color:var(--muted);vertical-align:bottom}
+.matrix thead th button{all:unset;cursor:pointer;display:block;padding:2px 4px;border-radius:4px}
+.matrix thead th button:hover,.matrix thead th button:focus-visible{color:var(--primary)}
+.matrix tbody th{text-align:left;font-weight:500;white-space:nowrap;padding-left:16px;color:var(--ink)}
+.matrix td.cnt{font-family:var(--mono);color:var(--muted);text-align:right;padding-right:16px}
+.matrix tbody tr{transition:background .15s}
+.matrix tbody tr:hover{background:var(--primary-soft)}
+.matrix .col-hl{background:var(--primary-soft)}
+.cell{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--primary);transition:transform .2s}
+.cell.no{background:transparent;border:1px solid var(--line);width:6px;height:6px}
+.matrix tbody tr:hover .cell:not(.no),.matrix .col-hl .cell:not(.no){transform:scale(1.35)}
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.skill{border:1px solid var(--line);border-radius:8px;padding:18px 20px;background:var(--surface)}
+.skill h3{font-size:15px;font-weight:600}
+.skill p{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.6}
+@media (max-width:600px){.skills{grid-template-columns:1fr}}
+
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.timeline li{display:grid;grid-template-columns:170px minmax(0,1fr);gap:8px 24px;padding-block:20px;border-bottom:1px solid var(--line)}
+.timeline .when{font:400 14px/1.6 var(--mono);color:var(--muted)}
+.timeline h3{font-size:17px;font-weight:600;line-height:1.45}
+.timeline .where{font-size:14px;color:var(--muted)}
+.timeline p{margin-top:6px;font-size:15px;max-width:66ch}
+@media (max-width:600px){.timeline li{grid-template-columns:1fr}}
+
+.pub{border-left:2px solid var(--primary);padding:4px 0 4px 20px;max-width:72ch}
+.pub .t{font-weight:500}
+.pub .s{margin-top:6px;font-size:14px;color:var(--muted)}
+
+.contact-list{display:grid;border-top:1px solid var(--line)}
+.crow{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:8px 16px;align-items:center;padding-block:16px;border-bottom:1px solid var(--line)}
+.crow .val{font-family:var(--mono);font-size:15px;overflow-wrap:anywhere;user-select:all}
+@media (max-width:600px){.crow{grid-template-columns:1fr auto}.crow .micro{grid-column:1/-1}}
+.toast{font-size:13px;color:var(--ok);min-height:1em}
+footer{border-top:1px solid var(--line);padding-block:24px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+#tip{position:fixed;z-index:40;pointer-events:none;background:var(--ink);color:var(--bg);font:500 12px/1.4 var(--mono);padding:6px 8px;border-radius:4px;opacity:0;transform:translate(-50%,-130%);transition:opacity .12s;white-space:nowrap}
+#tip.on{opacity:1}
+
+
+/* figures + heatmap */
+.fig{margin:12px 0 0;background:#FFFFFF;border:1px solid var(--line);border-radius:6px;padding:8px;overflow:hidden}
+.fig img{display:block;width:100%;height:auto;max-width:100%}
+.heat-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.seg-b{font:500 12px/1 var(--mono);padding:8px 12px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.seg-b[aria-pressed="true"]{background:var(--primary);color:var(--on-primary)}
+.seg-b:not([aria-pressed="true"]):hover{color:var(--ink)}
+.heat-scroll{overflow-x:auto;margin-top:14px}
+.heat{display:grid;grid-template-columns:minmax(96px,auto) repeat(6,minmax(52px,1fr));gap:2px;min-width:440px;font-size:12px}
+.heat .hc{font:400 11px/1 var(--mono);color:var(--muted);text-align:center;padding:4px 0}
+.heat .hr{color:var(--ink);display:flex;align-items:center;padding-right:8px;font-size:12px;white-space:nowrap}
+.heat .cell2{height:46px;border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:500 13px/1.1 var(--mono);transition:background-color .5s,color .5s,transform .15s;cursor:default;position:relative}
+.heat .cell2 small{font-size:10px;font-weight:400;opacity:.8;margin-top:3px}
+.heat .cell2:hover{transform:scale(1.06);z-index:1}
+.heat .cell2.max{outline:2px solid var(--ink);outline-offset:-2px}
+.heat .cell2.na{background:repeating-linear-gradient(135deg,var(--track) 0 5px,transparent 5px 9px);color:var(--muted);border:1px solid var(--line)}
+.heat-key{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.ramp{width:140px;height:8px;border-radius:2px;background:linear-gradient(90deg,var(--heat-lo),var(--heat-hi))}
+.na-key{display:inline-flex;align-items:center;gap:6px;margin-left:12px}
+.na-key i{width:14px;height:10px;border-radius:2px;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--track) 0 3px,transparent 3px 6px)}
+
+/* more projects */
+.more-list{border-top:1px solid var(--line)}
+details.more{border-bottom:1px solid var(--line)}
+details.more summary{list-style:none;display:grid;grid-template-columns:minmax(0,1fr) auto auto 20px;gap:8px 16px;align-items:center;padding:16px 4px;cursor:pointer;border-radius:4px;transition:background .15s}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary:hover{background:var(--primary-soft)}
+.m-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+.m-title{font-weight:600;font-size:16px;line-height:1.4}
+.m-one{font-size:14px;color:var(--muted);line-height:1.45}
+.m-metric{font-size:15px;font-weight:500;color:var(--primary);white-space:nowrap}
+.chev{width:18px;height:18px;color:var(--muted);transition:transform .25s}
+details.more[open] .chev{transform:rotate(180deg);color:var(--primary)}
+.m-body{padding:4px 4px 24px;animation:fadein .3s ease}
+@media (max-width:600px){details.more summary{grid-template-columns:minmax(0,1fr) 20px}.m-metric,details.more summary .badge{grid-column:1;justify-self:start}.chev{grid-row:1;grid-column:2}details.more summary .badge{display:none}}
+.ci{position:relative;margin-top:22px;padding-bottom:22px}
+.ci-track{position:relative;height:24px;background:var(--track);border-radius:4px}
+.ci-ref{position:absolute;top:-4px;bottom:-4px;border-left:2px dashed var(--muted)}
+.ci-bar{position:absolute;top:9px;height:6px;border-radius:3px}
+.ci-pt{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--surface)}
+.ci-axis{position:absolute;left:0;right:0;bottom:0;height:16px;font-size:11px;color:var(--muted)}
+.ci-axis span{position:absolute;transform:translateX(-50%)}
+.ci-lab{font-size:13px;color:var(--muted);margin-top:6px}
+.tbl-wrap{overflow-x:auto;margin-top:10px}
+.tbl{border-collapse:collapse;width:100%;font:400 13px/1.4 var(--mono);font-variant-numeric:tabular-nums}
+.tbl th{font:500 12px/1.4 var(--sans);color:var(--muted);text-align:right;padding:6px 8px;border-bottom:1px solid var(--line)}
+.tbl th:first-child,.tbl td:first-child{text-align:left;font-family:var(--sans)}
+.tbl td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--line)}
+.tbl tr.ref td{color:var(--primary);font-weight:500}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.pre .fill,.pre .share>div,.pre .checks .ck{transform:none!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main"><span lang="zh">跳到正文</span><span lang="en">Skip to content</span></a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 18 18" aria-hidden="true"><rect x="1" y="10" width="4" height="7" rx="1" fill="var(--seq3)"/><rect x="7" y="6" width="4" height="11" rx="1" fill="var(--seq2)"/><rect x="13" y="1" width="4" height="16" rx="1" fill="var(--primary)"/></svg>
+      <span lang="zh">吕昆泽</span><span lang="en">Kunze Lyu</span></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#projects"><span lang="zh">项目</span><span lang="en">Projects</span></a></li>
+        <li><a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a></li>
+        <li><a href="#experience"><span lang="zh">经历</span><span lang="en">Experience</span></a></li>
+        <li><a href="#contact"><span lang="zh">联系</span><span lang="en">Contact</span></a></li>
+      </ul>
+    </nav>
+    <div class="toggles">
+      <button class="tbtn" id="langBtn" type="button" aria-label="Switch language / 切换语言">EN</button>
+      <button class="tbtn" id="themeBtn" type="button" aria-label="Toggle dark mode / 切换深浅色">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="micro"><span lang="zh">数据科学 · 墨尔本</span><span lang="en">Data Science · Melbourne</span></p>
+      <h1 style="margin-top:12px"><span lang="zh">吕昆泽</span><span lang="en">Kunze Lyu</span><span class="en-name" lang="zh">Kunze Lyu</span><span class="en-name" lang="en">吕昆泽</span></h1>
+      <p class="role"><span lang="zh">求职方向：数据工程 / 数据分析实习</span><span lang="en">Seeking: data engineering / data analytics internship</span></p>
+      <p class="lede">
+        <span lang="zh">墨尔本大学数据科学本科。用 SQL 和 PySpark 把杂乱的多源数据整理成能建模的数据集，并且每一步都做校验。项目里的数字都能在 GitHub 上找到代码和结果表。</span>
+        <span lang="en">Data Science undergraduate at the University of Melbourne. I turn messy, multi-source data into model-ready datasets with SQL and PySpark, and I check each step. Every number on this page links back to code and result tables on GitHub.</span>
+      </p>
+      <p class="avail"><span class="dot" aria-hidden="true"></span>
+        <span lang="zh">可实习：<span class="mono">2026.11 下旬 — 2027.02 底</span> · 可全职</span>
+        <span lang="en">Available: <span class="mono">late Nov 2026 – end Feb 2027</span> · full-time</span>
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects"><span lang="zh">查看项目</span><span lang="en">See projects</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a class="btn btn-secondary" href="https://github.com/xialuote77" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.3 18.3 4.6 18.3 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
+          GitHub</a>
+        <button class="btn btn-secondary" type="button" data-copy="charlottlyu@163.com" data-toast="heroToast" id="heroCopy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          <span lang="zh">复制邮箱</span><span lang="en">Copy email</span></button>
+      </div>
+      <p class="toast" id="heroToast" role="status" aria-live="polite" style="margin-top:8px"></p>
+    </div>
+
+    <aside class="pipe" aria-label="Data pipeline of the NYC taxi project">
+      <div class="pipe-head">
+        <span class="pipe-title"><span lang="zh">一条数据流水线</span><span lang="en">One pipeline, end to end</span></span>
+        <span class="micro"><span lang="zh">纽约出租车项目</span><span lang="en">NYC taxi project</span></span>
+      </div>
+      <canvas id="flow" aria-hidden="true"></canvas>
+      <div class="stages">
+        <div class="stage"><div class="n">20.3M</div><div class="l"><span lang="zh">原始行程记录</span><span lang="en">raw trip records</span></div></div>
+        <div class="stage"><div class="n">400,942</div><div class="l"><span lang="zh">清洗 + 天气整合后的机场行程</span><span lang="en">airport trips after cleaning + weather join</span></div></div>
+        <div class="stage"><div class="n">74,926</div><div class="l"><span lang="zh">6 月留出测试集</span><span lang="en">June holdout test set</span></div></div>
+        <div class="stage"><div class="n hl">7.05 min</div><div class="l"><span lang="zh">测试集 MAE</span><span lang="en">test MAE</span></div></div>
+      </div>
+      <p class="pipe-note"><span lang="zh">动画为示意，点的数量未按比例绘制。</span><span lang="en">Animation is illustrative; dot counts are not to scale.</span></p>
+    </aside>
+  </div>
+</section>
+
+<div class="ledger">
+  <div class="wrap">
+    <dl>
+      <div><dt><span data-count="20.3" data-dec="1">20.3</span>M</dt><dd><span lang="zh">条记录用 PySpark 处理</span><span lang="en">records processed in PySpark</span></dd></div>
+      <div><dt><span data-count="10">10</span>/10</dt><dd><span lang="zh">条复杂 SQL 通过边界校验</span><span lang="en">complex SQL queries pass edge-case checks</span></dd></div>
+      <div><dt><span data-count="10">10</span></dt><dd><span lang="zh">个公开仓库，写明个人分工</span><span lang="en">public repos stating my own contribution</span></dd></div>
+      <div><dt>SPIE</dt><dd><span lang="zh">2023 国际会议论文（第四作者）</span><span lang="en">2023 conference paper (4th author)</span></dd></div>
+    </dl>
+  </div>
+</div>
+
+<section class="block" id="projects" aria-labelledby="h-projects">
+  <div class="wrap">
+    <div class="rail">
+      <h2 id="h-projects"><span lang="zh">精选项目</span><span lang="en">Selected projects</span></h2>
+      <p><span lang="zh">与数据工程、数据分析最相关的 4 个项目。每个都写明了个人还是团队完成、我负责哪部分，以及指标的评估口径。</span><span lang="en">The four projects closest to data engineering and analytics. Each states solo or team, what I owned, and how each metric was evaluated.</span></p>
+    </div>
+
+    <div class="projects">
+
+      <!-- TAXI -->
+      <article class="proj" id="p-taxi">
+        <div class="proj-head">
+          <h3><span lang="zh">纽约机场出租车行程时间预测</span><span lang="en">NYC airport taxi travel time</span></h3>
+          <div class="meta"><span class="date">2026.08</span><span class="badge solo"><span lang="zh">个人项目</span><span lang="en">Solo</span></span></div>
+        </div>
+        <p class="question"><span lang="zh">坐黄色出租车去 JFK 或 LaGuardia，应该预留多少时间？</span><span lang="en">How much time should you allow when taking a yellow taxi to JFK or LaGuardia?</span></p>
+        <p class="role-line"><span lang="zh">独立完成数据下载、PySpark 清洗与特征构建（时间、位置、NOAA 逐小时天气）、模型比较、误差分析和英文报告。</span><span lang="en">I did the whole pipeline: download, PySpark cleaning and features (time, zone, hourly NOAA weather), model comparison, error analysis and the written report.</span></p>
+        <div class="metrics">
+          <div class="metric"><div class="v"><span data-count="400942">400,942</span></div><div class="k"><span lang="zh">机场方向有效行程（源自 2,030 万条记录）</span><span lang="en">valid airport trips (from 20.3M records)</span></div></div>
+          <div class="metric"><div class="v"><span data-count="7.05" data-dec="2">7.05</span><small><span lang="zh">分钟</span><span lang="en">min</span></small></div><div class="k"><span lang="zh">Gamma GLM 的 MAE，比梯度提升树低 12.9%</span><span lang="en">Gamma GLM MAE, 12.9% below gradient-boosted trees</span></div></div>
+          <div class="metric"><div class="v"><span data-count="96.99" data-dec="2">96.99</span><small>%</small></div><div class="k"><span lang="zh">加 20.68 分钟缓冲后的行程覆盖率</span><span lang="en">trip coverage with a 20.68-min buffer</span></div></div>
+        </div>
+
+        <div class="tabs" data-tabs>
+          <div class="tablist" role="tablist" aria-label="Taxi project charts"><button class="tab" role="tab" id="t-models" aria-controls="tp-models" aria-selected="true" type="button"><span lang="zh">模型对比</span><span lang="en">Models</span></button><button class="tab" role="tab" id="t-errors" aria-controls="tp-errors" aria-selected="false" tabindex="-1" type="button"><span lang="zh">误差分布</span><span lang="en">Errors</span></button><button class="tab" role="tab" id="t-hour" aria-controls="tp-hour" aria-selected="false" tabindex="-1" type="button"><span lang="zh">出发时段</span><span lang="en">By hour</span></button><button class="tab" role="tab" id="t-heat" aria-controls="tp-heat" aria-selected="false" tabindex="-1" type="button"><span lang="zh">天气 × 时段</span><span lang="en">Weather × time</span></button><button class="tab" role="tab" id="t-map" aria-controls="tp-map" aria-selected="false" tabindex="-1" type="button"><span lang="zh">上车区域</span><span lang="en">Pickup zones</span></button><button class="tab" role="tab" id="t-dist" aria-controls="tp-dist" aria-selected="false" tabindex="-1" type="button"><span lang="zh">时长分布</span><span lang="en">Durations</span></button><button class="tab" role="tab" id="t-ablation" aria-controls="tp-ablation" aria-selected="false" tabindex="-1" type="button"><span lang="zh">天气消融</span><span lang="en">Weather ablation</span></button></div>
+          <div class="tabpanel chart" role="tabpanel" id="tp-models" aria-labelledby="t-models">
+            <p class="chart-title"><span lang="zh">2024 年 6 月测试集误差（分钟，越低越好）</span><span lang="en">June 2024 holdout error (minutes, lower is better)</span></p>
+            <div class="legend"><span><i class="sw p"></i>Gamma GLM</span><span><i class="sw b"></i><span lang="zh">梯度提升树</span><span lang="en">Gradient-boosted trees</span></span></div>
+            <div class="bars anim">
+              <div class="group-label">MAE</div>
+              <div class="bar-row"><span class="lab">Gamma</span><div class="track"><div class="fill" style="width:58.74%" data-tip="Gamma GLM · MAE 7.049 min"></div></div><span class="val">7.049</span></div>
+              <div class="bar-row"><span class="lab">GBT</span><div class="track"><div class="fill b" style="width:67.41%" data-tip="GBT · MAE 8.089 min"></div></div><span class="val">8.089</span></div>
+              <div class="group-label">RMSE</div>
+              <div class="bar-row"><span class="lab">Gamma</span><div class="track"><div class="fill" style="width:81.93%" data-tip="Gamma GLM · RMSE 9.832 min"></div></div><span class="val">9.832</span></div>
+              <div class="bar-row"><span class="lab">GBT</span><div class="track"><div class="fill b" style="width:93.03%" data-tip="GBT · RMSE 11.164 min"></div></div><span class="val">11.164</span></div>
+              <div class="axis"><span></span><span class="ticks"><span>0</span><span>3</span><span>6</span><span>9</span><span>12</span></span><span></span></div>
+            </div>
+            <p class="caveat"><span lang="zh">R²：Gamma 0.732，梯度提升树 0.654。模型按月份扩展训练，6 月整月留出测试。</span><span lang="en">R²: Gamma 0.732, GBT 0.654. Trained on an expanding monthly window; all of June held out.</span></p>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp-errors" aria-labelledby="t-errors" hidden>
+            <p class="chart-title"><span lang="zh">6 月测试集预测误差（实际 − 预测，分钟）</span><span lang="en">June holdout prediction error (actual − predicted, minutes)</span></p>
+            <figure class="fig"><img src="assets/june_prediction_error_boxplot.webp" alt="Box plots of June prediction errors for Gamma GLR and GBT at JFK and LaGuardia" width="1600" height="803" loading="lazy" decoding="async"></figure>
+            <p class="caveat"><span lang="zh">两个机场里 Gamma 的误差箱体都比梯度提升树更窄，须线更短；JFK 的误差范围明显大于 LaGuardia。</span><span lang="en">At both airports the Gamma model has a tighter box and shorter whiskers than GBT; JFK errors spread much wider than LaGuardia’s.</span></p>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp-hour" aria-labelledby="t-hour" hidden>
+            <p class="chart-title"><span lang="zh">按上车时段的行程时长：中位数与第 95 百分位</span><span lang="en">Trip duration by pickup hour: median and 95th percentile</span></p>
+            <figure class="fig"><img src="assets/travel_time_by_departure_hour.webp" alt="Line charts of median and 95th percentile trip duration by pickup hour for JFK and LaGuardia" width="1600" height="630" loading="lazy" decoding="async"></figure>
+            <p class="caveat"><span lang="zh">两个机场都在下午 4 点前后最慢；JFK 此时第 95 百分位接近 100 分钟，中位数与 P95 的差距也最大。</span><span lang="en">Both airports peak around 4 pm; at JFK the 95th percentile nears 100 minutes and the gap to the median is widest.</span></p>
+          </div>
+          <div class="tabpanel chart" role="tabpanel" id="tp-heat" aria-labelledby="t-heat" hidden>
+            <div class="heat-head">
+              <p class="chart-title"><span lang="zh">历史行程时间缓冲：天气 × 上车时段（分钟）</span><span lang="en">Historical travel-time buffer: weather × pickup time (minutes)</span></p>
+              <div class="seg" role="group" aria-label="Airport">
+                <button type="button" class="seg-b" data-ap="jfk" aria-pressed="true">JFK</button>
+                <button type="button" class="seg-b" data-ap="lga" aria-pressed="false">LaGuardia</button>
+              </div>
+            </div>
+            <div class="heat-scroll"><div class="heat" id="heat" role="table" aria-label="Buffer heatmap"></div></div>
+            <div class="heat-key"><span class="mono">5</span><span class="ramp" aria-hidden="true"></span><span class="mono">40 min</span><span class="na-key"><i></i><span lang="zh">样本不足</span><span lang="en">too few trips</span></span></div>
+            <p class="caveat" id="heatNote"></p>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp-map" aria-labelledby="t-map" hidden>
+            <p class="chart-title"><span lang="zh">各上车区域的历史缓冲（P95 − 中位数，2024 年 1–6 月）</span><span lang="en">Historical buffer by pickup zone (P95 − median, Jan–Jun 2024)</span></p>
+            <figure class="fig"><img src="assets/pickup_zone_buffer_map.webp" alt="Choropleth maps of travel-time buffer by NYC pickup zone for trips to JFK and LaGuardia" width="1600" height="930" loading="lazy" decoding="async"></figure>
+            <p class="caveat"><span lang="zh">去 JFK 缓冲最大的是 Greenwich Village North（36.5 分钟），去 LaGuardia 是 World Trade Center（30.1 分钟）。灰色区域行程少于 1,000 条或无匹配数据。</span><span lang="en">The largest buffer to JFK is from Greenwich Village North (36.5 min); to LaGuardia, from World Trade Center (30.1 min). Grey zones had under 1,000 trips or no match.</span></p>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp-dist" aria-labelledby="t-dist" hidden>
+            <p class="chart-title"><span lang="zh">行程时长分布（每 2 分钟区间的行程占比）</span><span lang="en">Trip duration distribution (share of trips per 2-minute bin)</span></p>
+            <figure class="fig"><img src="assets/duration_distribution_by_airport.webp" alt="Histograms of trip duration for JFK and LaGuardia" width="1600" height="630" loading="lazy" decoding="async"></figure>
+            <p class="caveat"><span lang="zh">JFK 中位数 50.15 分钟、分布更宽；LaGuardia 中位数 28.35 分钟，集中在 15–50 分钟。</span><span lang="en">JFK: median 50.15 min with a wide spread. LaGuardia: median 28.35 min, concentrated between 15 and 50 min.</span></p>
+          </div>
+          <div class="tabpanel chart" role="tabpanel" id="tp-ablation" aria-labelledby="t-ablation" hidden>
+            <p class="chart-title"><span lang="zh">去掉天气特征后，5 月验证集 MAE 上升（分钟）</span><span lang="en">Removing weather features raises May validation MAE (minutes)</span></p>
+            <div class="legend"><span><i class="sw p"></i><span lang="zh">含天气</span><span lang="en">With weather</span></span><span><i class="sw b"></i><span lang="zh">不含天气</span><span lang="en">Without weather</span></span></div>
+            <div class="bars anim">
+              <div class="group-label">Gamma GLM · +0.268</div>
+              <div class="bar-row"><span class="lab" lang="zh">含天气</span><span class="lab" lang="en">with</span><div class="track"><div class="fill" style="width:81.20%" data-tip="Gamma · with weather 8.120"></div></div><span class="val">8.120</span></div>
+              <div class="bar-row"><span class="lab" lang="zh">不含</span><span class="lab" lang="en">without</span><div class="track"><div class="fill b" style="width:83.88%" data-tip="Gamma · without weather 8.388"></div></div><span class="val">8.388</span></div>
+              <div class="group-label">GBT · +0.032</div>
+              <div class="bar-row"><span class="lab" lang="zh">含天气</span><span class="lab" lang="en">with</span><div class="track"><div class="fill" style="width:91.08%" data-tip="GBT · with weather 9.108"></div></div><span class="val">9.108</span></div>
+              <div class="bar-row"><span class="lab" lang="zh">不含</span><span class="lab" lang="en">without</span><div class="track"><div class="fill b" style="width:91.40%" data-tip="GBT · without weather 9.140"></div></div><span class="val">9.140</span></div>
+              <div class="axis"><span></span><span class="ticks"><span>0</span><span>5</span><span>10</span></span><span></span></div>
+            </div>
+            <p class="caveat"><span lang="zh">天气带来的提升不大但稳定，两个模型方向一致。</span><span lang="en">Weather helps a little, consistently, in both models.</span></p>
+          </div>
+        </div>
+
+        <div class="proj-foot">
+          <ul class="stack"><li>PySpark</li><li>Spark ML</li><li>pandas</li><li>GeoPandas</li><li>Matplotlib</li></ul>
+          <a class="quiet" href="https://github.com/xialuote77/nyc-airport-taxi-travel-time" target="_blank" rel="noopener"><span lang="zh">代码与报告</span><span lang="en">Code &amp; report</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <!-- SQL -->
+      <article class="proj" id="p-sql">
+        <div class="proj-head">
+          <h3><span lang="zh">电动车充电网络 SQL 分析</span><span lang="en">EV charging network SQL</span></h3>
+          <div class="meta"><span class="date">2025.05</span><span class="badge solo"><span lang="zh">个人项目</span><span lang="en">Solo</span></span></div>
+        </div>
+        <p class="question"><span lang="zh">围绕车辆、车主、充电站、充电记录和优惠券，用 10 条查询回答 10 个业务问题。</span><span lang="en">Ten queries answering ten business questions over vehicles, owners, stations, charge events and coupons.</span></p>
+        <p class="role-line"><span lang="zh">多表 JOIN、分组聚合、HAVING、相关子查询、NOT EXISTS，处理 NULL 值和日期边界。</span><span lang="en">Multi-table joins, aggregation, HAVING, correlated subqueries and NOT EXISTS, with NULL and date-boundary handling.</span></p>
+        <div class="body2">
+          <div class="metrics stacked">
+            <div class="metric"><div class="v"><span data-count="10">10</span>/10</div><div class="k"><span lang="zh">修订查询通过合成数据检查（空值、日期边界、并列最大值）</span><span lang="en">revised queries pass synthetic checks (NULLs, date edges, tied maxima)</span></div></div>
+            <div class="metric"><div class="v"><span data-count="9.2" data-dec="1">9.2</span><small>/10</small></div><div class="k"><span lang="zh">课程成绩；提交版在 ONLY_FULL_GROUP_BY 下通过</span><span lang="en">course grade; submitted version ran under ONLY_FULL_GROUP_BY</span></div></div>
+          </div>
+          <div class="anim">
+            <p class="chart-title" style="margin-bottom:8px"><span lang="zh">查询覆盖的业务问题</span><span lang="en">Business questions covered</span></p>
+            <ul class="checks">
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">大容量电池车辆</span><span lang="en">Large-battery vehicles</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">高功率充电站</span><span lang="en">High-rate stations</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">无配套设施的站点</span><span lang="en">Stations without facilities</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">从未充电的注册车辆</span><span lang="en">Registered vehicles never charged</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">有未使用优惠券的设施</span><span lang="en">Facilities with unused coupons</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">各车型 / 厂商平均充电量</span><span lang="en">Avg energy by model / maker</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">公司下属层级</span><span lang="en">Company hierarchy</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">车主与非车主充电行为</span><span lang="en">Owner vs non-owner charging</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">充电接口覆盖情况</span><span lang="en">Charging coverage</span></span></li>
+              <li><i class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.2 5 8.5 9.5 3.5"/></svg></i><span><span lang="zh">优惠券折后月收入</span><span lang="en">Post-discount monthly income</span></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="proj-foot">
+          <ul class="stack"><li>MySQL</li><li>SQL</li><li>Python</li></ul>
+          <a class="quiet" href="https://github.com/xialuote77/ev-charging-sql" target="_blank" rel="noopener"><span lang="zh">查询代码</span><span lang="en">Queries</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <!-- RENTAL -->
+      <article class="proj" id="p-rental">
+        <div class="proj-head">
+          <h3><span lang="zh">维州租房数据整合与外部验证</span><span lang="en">Victorian rental data integration &amp; validation</span></h3>
+          <div class="meta"><span class="date">2026.09 – 10</span><span class="badge"><span lang="zh">团队项目</span><span lang="en">Team</span></span></div>
+        </div>
+        <p class="question"><span lang="zh">在一个房源平台上训练的租金模型，换到另一个平台还准吗？</span><span lang="en">Does a rent model trained on one listing platform still work on another?</span></p>
+        <p class="role-line"><span lang="zh">我负责：编写爬虫采集房源、把地理和人口等外部数据与主数据集整合、外部验证和复现流程。核心租金模型由组员完成。</span><span lang="en">I owned: scraping listings, joining geographic and demographic data to the main dataset, external validation and the reproducible workflow. The core rent model was a teammate's.</span></p>
+        <div class="body2">
+          <div class="metrics stacked">
+            <div class="metric"><div class="v"><span data-count="719">719</span></div><div class="k"><span lang="zh">自行采集的外部房源</span><span lang="en">externally collected listings</span></div></div>
+            <div class="metric"><div class="v">A$<span data-count="62.61" data-dec="2">62.61</span></div><div class="k"><span lang="zh">外部样本周租金 MAE，R² 0.728</span><span lang="en">weekly-rent MAE on external sample, R² 0.728</span></div></div>
+          </div>
+          <div class="chart">
+            <p class="chart-title"><span lang="zh">周租金 MAE（澳元）</span><span lang="en">Weekly-rent MAE (A$)</span></p>
+            <div class="legend"><span><i class="sw b"></i><span lang="zh">内部留出测试（Domain）</span><span lang="en">Internal holdout (Domain)</span></span><span><i class="sw p"></i><span lang="zh">外部验证（Barry Plant）</span><span lang="en">External (Barry Plant)</span></span></div>
+            <div class="bars anim">
+              <div class="bar-row"><span class="lab" lang="zh">内部</span><span class="lab" lang="en">Internal</span><div class="track"><div class="fill b" style="width:93.53%" data-tip="Internal · MAE A$74.82 · R² 0.680"></div></div><span class="val">74.82</span></div>
+              <div class="bar-row"><span class="lab" lang="zh">外部</span><span class="lab" lang="en">External</span><div class="track"><div class="fill" style="width:78.26%" data-tip="External · MAE A$62.61 · R² 0.728"></div></div><span class="val">62.61</span></div>
+              <div class="axis"><span></span><span class="ticks"><span>0</span><span>40</span><span>80</span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+        <p class="caveat"><span lang="zh">指标来自原项目保存的结果；两个平台的时间和房源构成不同，外部误差更低不代表迁移效果更好。</span><span lang="en">Metrics are from saved project outputs. Platforms differ in dates and property mix, so a lower external error does not prove better transfer.</span></p>
+        <div class="proj-foot">
+          <ul class="stack"><li>Python</li><li>pandas</li><li>NumPy</li><li>scikit-learn</li><li><span lang="zh">网页采集</span><span lang="en">web scraping</span></li></ul>
+          <a class="quiet" href="https://github.com/xialuote77/victorian-rental-external-validation" target="_blank" rel="noopener"><span lang="zh">代码与贡献记录</span><span lang="en">Code &amp; contributions</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <!-- ROAD -->
+      <article class="proj" id="p-road">
+        <div class="proj-head">
+          <h3><span lang="zh">道路事故中的道路使用者分群</span><span lang="en">Road-crash user segmentation</span></h3>
+          <div class="meta"><span class="date">KMeans</span><span class="badge"><span lang="zh">团队项目</span><span lang="en">Team</span></span></div>
+        </div>
+        <p class="question"><span lang="zh">按安全带、座位和车辆类别把道路使用者分组，再比较各组的伤害严重程度。</span><span lang="en">Group road users by belt status, seat and vehicle type, then compare injury severity across groups.</span></p>
+        <p class="role-line"><span lang="zh">我负责聚类模块及报告、展示中的聚类部分；之后独立重构为可复现版本，并与历史结果逐项核对。</span><span lang="en">I owned the clustering module and its report and slides; later rebuilt it as a reproducible version and reconciled it against the original results.</span></p>
+        <div class="metrics">
+          <div class="metric"><div class="v"><span data-count="400863">400,863</span></div><div class="k"><span lang="zh">清洗后记录重新运行</span><span lang="en">cleaned records re-run</span></div></div>
+          <div class="metric"><div class="v">K=3</div><div class="k"><span lang="zh">比较 K=3/4/5，轮廓系数在 5,000 行样本上计算</span><span lang="en">K=3/4/5 compared; silhouette on a 5,000-row sample</span></div></div>
+          <div class="metric"><div class="v"><span data-count="80.92" data-dec="2">80.92</span><small>%</small></div><div class="k"><span lang="zh">最大群体占比，分组主要反映车辆类别</span><span lang="en">largest group share; groups mostly track vehicle type</span></div></div>
+        </div>
+        <div class="chart anim" style="margin-top:18px">
+          <p class="chart-title"><span lang="zh">K=3 时三个群体的记录占比</span><span lang="en">Share of records in each of the 3 clusters</span></p>
+          <div class="share">
+            <div class="s1" style="width:7.35%" data-tip="Cluster 1 · 7.35%"></div>
+            <div class="s2" style="width:11.73%" data-tip="Cluster 2 · 11.73%">11.7%</div>
+            <div class="s3" style="width:80.92%" data-tip="Cluster 3 · 80.92%">80.92%</div>
+          </div>
+          <div class="share-key"><span><i class="sw" style="background:var(--seq3)"></i><span lang="zh">群体 1 · 7.35%</span><span lang="en">Cluster 1 · 7.35%</span></span><span><i class="sw" style="background:var(--seq2)"></i><span lang="zh">群体 2 · 11.73%</span><span lang="en">Cluster 2 · 11.73%</span></span><span><i class="sw p"></i><span lang="zh">群体 3 · 80.92%</span><span lang="en">Cluster 3 · 80.92%</span></span></div>
+        </div>
+        <p class="caveat"><span lang="zh">伤害严重程度只用于聚类后的描述。分群描述特征组合，不能证明因果风险。</span><span lang="en">Injury severity is used only to profile clusters afterwards. Segments describe feature combinations, not causal risk.</span></p>
+        <div class="proj-foot">
+          <ul class="stack"><li>Python</li><li>scikit-learn</li><li>pandas</li></ul>
+          <a class="quiet" href="https://github.com/xialuote77/road-crash-segmentation" target="_blank" rel="noopener"><span lang="zh">代码与报告</span><span lang="en">Code &amp; report</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <!-- EFFNET -->
+      
+
+      <!-- EM -->
+      
+
+    </div>
+  </div>
+</section>
+
+
+<section class="block" id="more" aria-labelledby="h-more">
+  <div class="wrap">
+    <div class="rail"><h2 id="h-more"><span lang="zh">更多项目</span><span lang="en">More projects</span></h2>
+      <p><span lang="zh">建模与统计方向的另外 6 个项目。点击展开指标和图表。</span><span lang="en">Six more modelling and statistics projects. Open one to see its metrics and chart.</span></p></div>
+    <div class="more-list">
+      <details class="more" id="p-income">
+        <summary>
+          <span class="m-main"><span class="m-title"><span lang="zh">Adult Income 半监督分类</span><span lang="en">Adult Income semi-supervised classification</span></span><span class="m-one"><span lang="zh">朴素贝叶斯 + 置信度伪标签，提高少数类召回</span><span lang="en">Naive Bayes + confidence pseudo-labels to lift minority recall</span></span></span>
+          <span class="m-metric mono">F1 0.615</span>
+          <span class="badge solo"><span lang="zh">个人</span><span lang="en">Solo</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="m-body">
+          <p class="role-line" style="margin-top:0"><span lang="zh">独立实现连续与类别特征的混合朴素贝叶斯、置信度分析、伪标签筛选和模型比较。</span><span lang="en">I implemented the mixed Gaussian/categorical NB, confidence analysis, pseudo-label selection and model comparison.</span></p>
+          <div class="body2"><div class="metrics stacked">
+  <div class="metric"><div class="v">53.07→55.78<small>%</small></div><div class="k"><span lang="zh">高收入类召回率</span><span lang="en">Recall on the >50K class</span></div></div>
+  <div class="metric"><div class="v">0.6076→0.6150</div><div class="k"><span lang="zh">高收入类 F1；总体准确率 83.40% → 83.08%</span><span lang="en">>50K F1; accuracy 83.40% → 83.08%</span></div></div></div>
+  <div class="chart"><p class="chart-title"><span lang="zh">加入伪标签前后（测试集 16,281 条，%）</span><span lang="en">Before and after pseudo-labels (16,281 test rows, %)</span></p><div class="legend"><span><i class="sw b"></i><span lang="zh">监督混合朴素贝叶斯</span><span lang="en">Supervised mixed NB</span></span><span><i class="sw p"></i><span lang="zh">置信度伪标签</span><span lang="en">Confidence pseudo-labels</span></span></div><div class="bars anim"><div class="group-label"><span lang="zh">召回率</span><span lang="en">Recall</span></div><div class="bar-row"><span class="lab">NB</span><div class="track"><div class="fill b" style="width:53.07%" data-tip="Supervised · recall 53.07%"></div></div><span class="val">53.07</span></div><div class="bar-row"><span class="lab">+PL</span><div class="track"><div class="fill" style="width:55.78%" data-tip="Pseudo-labels · recall 55.78%"></div></div><span class="val">55.78</span></div><div class="group-label"><span lang="zh">精确率</span><span lang="en">Precision</span></div><div class="bar-row"><span class="lab">NB</span><div class="track"><div class="fill b" style="width:71.07%" data-tip="Supervised · precision 71.07%"></div></div><span class="val">71.07</span></div><div class="bar-row"><span class="lab">+PL</span><div class="track"><div class="fill" style="width:68.51%" data-tip="Pseudo-labels · precision 68.51%"></div></div><span class="val">68.51</span></div><div class="group-label"><span lang="zh">准确率</span><span lang="en">Accuracy</span></div><div class="bar-row"><span class="lab">NB</span><div class="track"><div class="fill b" style="width:83.4%" data-tip="Supervised · accuracy 83.40%"></div></div><span class="val">83.40</span></div><div class="bar-row"><span class="lab">+PL</span><div class="track"><div class="fill" style="width:83.08%" data-tip="Pseudo-labels · accuracy 83.08%"></div></div><span class="val">83.08</span></div><div class="axis"><span></span><span class="ticks"><span>0</span><span>50</span><span>100</span></span><span></span></div></div></div></div>
+  <p class="caveat"><span lang="zh">多找回了少数类，代价是更多误报。整理版修正了验证集信息泄漏、先验重复计算和缺失值填补；阈值只在验证集上选择（选中 10），最终有 4,742 条未标注样本进入模型。单次划分上的小幅提升不代表统计显著。</span><span lang="en">Recovers more minority-class cases at the cost of more false positives. The reviewed version fixes validation leakage, double-counted priors and imputation; the threshold (10) is chosen on validation only, and 4,742 unlabelled rows enter the final model. A small gain on one split is not proof of significance.</span></p>
+          <div class="proj-foot">
+            <ul class="stack"><li>Python</li><li>scikit-learn</li><li>Naive Bayes</li></ul>
+            <a class="quiet" href="https://github.com/xialuote77/adult-income-semi-supervised-classification" target="_blank" rel="noopener"><span lang="zh">查看仓库</span><span lang="en">View repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </details>
+      <details class="more" id="p-img">
+        <summary>
+          <span class="m-main"><span class="m-title"><span lang="zh">EfficientNet 特征与集成的图像分类</span><span lang="en">Image classification with EfficientNet ensembles</span></span><span class="m-one"><span lang="zh">动物与细粒度鸟类识别，手工特征 vs 预训练特征</span><span lang="en">Animals and fine-grained birds: handcrafted vs pretrained features</span></span></span>
+          <span class="m-metric mono">92.59%</span>
+          <span class="badge"><span lang="zh">团队</span><span lang="en">Team</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="m-body">
+          <p class="role-line" style="margin-top:0"><span lang="zh">我负责集成方案设计、模型调试与性能优化，并是报告主要撰写人。</span><span lang="en">I designed the ensemble, debugged and tuned models, and was a principal report writer.</span></p>
+          <div class="body2">
+          <div class="metrics stacked">
+            <div class="metric"><div class="v"><span data-count="92.59" data-dec="2">92.59</span><small>%</small></div><div class="k"><span lang="zh">动物分类，B4 + RBF SVM，5 折 CV 均值</span><span lang="en">animals, B4 + RBF SVM, 5-fold CV mean</span></div></div>
+            <div class="metric"><div class="v"><span data-count="90.5" data-dec="1">90.5</span><small>%</small></div><div class="k"><span lang="zh">鸟类加权集成，误差分析留出集</span><span lang="en">birds, weighted ensemble, error-analysis holdout</span></div></div>
+          </div>
+          <div class="chart">
+            <p class="chart-title"><span lang="zh">换成预训练特征后的准确率（%）</span><span lang="en">Accuracy after switching to pretrained features (%)</span></p>
+            <div class="legend"><span><i class="sw b"></i><span lang="zh">手工特征 + 线性 SVM</span><span lang="en">Handcrafted + linear SVM</span></span><span><i class="sw p"></i>EfficientNet + SVM</span></div>
+            <div class="bars anim">
+              <div class="group-label"><span lang="zh">任务 1 · 动物</span><span lang="en">Task 1 · animals</span></div>
+              <div class="bar-row"><span class="lab" lang="zh">手工</span><span class="lab" lang="en">Handcrafted</span><div class="track"><div class="fill b" style="width:55.6%" data-tip="Handcrafted · 55.6% (validation split)"></div></div><span class="val">55.6</span></div>
+              <div class="bar-row"><span class="lab">B4</span><div class="track"><div class="fill" style="width:92.59%" data-tip="EfficientNet-B4 · 92.59% (5-fold CV)"></div></div><span class="val">92.59</span></div>
+              <div class="group-label"><span lang="zh">任务 2 · 鸟类</span><span lang="en">Task 2 · birds</span></div>
+              <div class="bar-row"><span class="lab" lang="zh">手工</span><span class="lab" lang="en">Handcrafted</span><div class="track"><div class="fill b" style="width:30.5%" data-tip="Handcrafted · 30.5% (validation split)"></div></div><span class="val">30.5</span></div>
+              <div class="bar-row"><span class="lab">B2</span><div class="track"><div class="fill" style="width:93.05%" data-tip="EfficientNet-B2 · 93.05% (5-fold CV)"></div></div><span class="val">93.05</span></div>
+              <div class="axis"><span></span><span class="ticks"><span>0</span><span>50</span><span>100</span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+        <p class="caveat"><span lang="zh">评估口径不同：手工特征为验证集，预训练特征为 5 折 CV 均值；鸟类留出集可能参与过模型选择，不是独立测试集。</span><span lang="en">Protocols differ: handcrafted results are validation-split, pretrained are 5-fold CV means; the bird holdout may overlap model selection, so it is not an untouched test set.</span></p>
+        <p class="caveat"><span lang="zh">评估口径不同：手工特征为验证集，预训练特征为 5 折 CV 均值；鸟类加权集成在误差分析留出集上为 90.5%，该留出集可能参与过模型选择。</span><span lang="en">Protocols differ: handcrafted results are validation-split, pretrained are 5-fold CV means; the bird ensemble scores 90.5% on an error-analysis holdout that may overlap model selection.</span></p>
+          <div class="proj-foot">
+            <ul class="stack"><li>EfficientNet-B4/B2</li><li>scikit-learn</li><li>SVM</li></ul>
+            <a class="quiet" href="https://github.com/xialuote77/efficientnet-image-classification" target="_blank" rel="noopener"><span lang="zh">查看仓库</span><span lang="en">View repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </details>
+      <details class="more" id="p-coral">
+        <summary>
+          <span class="m-main"><span class="m-title"><span lang="zh">大堡礁珊瑚鳟丰度：GLM 与过度离散</span><span lang="en">Coral trout abundance: GLMs and overdispersion</span></span><span class="m-one"><span lang="zh">Poisson → quasi-Poisson，检验禁捕区与开放区差异</span><span lang="en">Poisson → quasi-Poisson to compare no-take and open zones</span></span></span>
+          <span class="m-metric mono">1.76×</span>
+          <span class="badge solo"><span lang="zh">个人</span><span lang="en">Solo</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="m-body">
+          <p class="role-line" style="margin-top:0"><span lang="zh">独立完成数据探索、建模、交互项检验、残差与影响点诊断、敏感性分析和咨询式报告。</span><span lang="en">I did the exploration, modelling, interaction tests, residual and influence diagnostics, sensitivity analysis and a consulting-style report.</span></p>
+          <div class="body2"><div class="metrics stacked">
+  <div class="metric"><div class="v">5.38</div><div class="k"><span lang="zh">Poisson 交互模型离散系数，明显过度离散</span><span lang="en">Dispersion of the Poisson interaction model: strong overdispersion</span></div></div>
+  <div class="metric"><div class="v">p 0.009→0.420</div><div class="k"><span lang="zh">交互项检验：Poisson 下显著，quasi-Poisson 后不再显著</span><span lang="en">Interaction test: significant under Poisson, not after quasi-Poisson</span></div></div></div>
+  <div class="chart"><p class="chart-title"><span lang="zh">禁捕区 / 开放区的预期计数比（控制纬度带）</span><span lang="en">No-take / open expected-count ratio (adjusted for latitude)</span></p>
+   <div class="ci anim">
+     <div class="ci-track"><span class="ci-ref" style="left:10.00%"></span><span class="ci-bar fill" style="left:22.10%;width:62.59%" data-tip="Approx. 95% CI 1.24–2.49"></span><span class="ci-pt" style="left:48.00%" data-tip="Ratio 1.76"></span></div>
+     <div class="ci-axis mono"><span style="left:10.00%">1.0</span><span style="left:35.00%">1.5</span><span style="left:60.00%">2.0</span><span style="left:85.00%">2.5</span></div>
+   </div>
+   <p class="ci-lab"><span class="mono" style="color:var(--primary);font-weight:500">1.76×</span> · <span lang="zh">近似 95% 区间 1.24–2.49；虚线 = 无差异</span><span lang="en">approx. 95% interval 1.24–2.49; dashed line = no difference</span></p></div></div>
+  <p class="caveat"><span lang="zh">120 个站点的观察性数据，结果是关联而非禁捕政策的因果效应。去掉两个强影响站点后效应变小但方向不变，主分析保留全部站点。</span><span lang="en">Observational data from 120 sites: an association, not a causal policy effect. Dropping two influential sites shrinks the estimate but keeps its direction; the main fit keeps all sites.</span></p>
+          <div class="proj-foot">
+            <ul class="stack"><li>R</li><li>GLM</li><li>ggplot2</li></ul>
+            <a class="quiet" href="https://github.com/xialuote77/coral-trout-glm-analysis" target="_blank" rel="noopener"><span lang="zh">查看仓库</span><span lang="en">View repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </details>
+      <details class="more" id="p-land">
+        <summary>
+          <span class="m-main"><span class="m-title"><span lang="zh">Landsat 土地覆盖分类</span><span lang="en">Landsat land-cover classification</span></span><span class="m-one"><span lang="zh">墨尔本东南部 Landsat 8 影像，NDVI 与六类最大似然分类</span><span lang="en">Landsat 8 over SE Melbourne: NDVI and six-class maximum-likelihood</span></span></span>
+          <span class="m-metric mono">Kappa 0.92</span>
+          <span class="badge"><span lang="zh">团队</span><span lang="en">Team</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="m-body">
+          <p class="role-line" style="margin-top:0"><span lang="zh">我主要负责 ENVI 影像处理，并参与报告方法与结论的撰写。</span><span lang="en">I led the ENVI image processing and co-wrote the Methods and Conclusion.</span></p>
+          <div class="metrics">
+  <div class="metric"><div class="v">97.86<small>%</small></div><div class="k"><span lang="zh">测试 ROI 总体精度</span><span lang="en">Overall accuracy on test ROIs</span></div></div>
+  <div class="metric"><div class="v">0.9228</div><div class="k">Kappa</div></div>
+  <div class="metric"><div class="v">76.21<small>%</small></div><div class="k"><span lang="zh">居民地生产者精度（召回）</span><span lang="en">Settlement producer’s accuracy (recall)</span></div></div></div>
+  <p class="caveat"><span lang="zh">六类：水体、森林、低矮植被、居民地、裸地、云。测试像元以水体为主，所以总体精度很高、居民地明显偏弱，不代表全区域效果。</span><span lang="en">Six classes: water, forest, low vegetation, settlement, bare land, cloud. Water dominates the test pixels, so high overall accuracy sits beside weaker settlement results and does not generalise region-wide.</span></p>
+          <div class="proj-foot">
+            <ul class="stack"><li>ENVI</li><li>Landsat 8</li><li>NDVI</li></ul>
+            <a class="quiet" href="https://github.com/xialuote77/landsat-land-cover-classification" target="_blank" rel="noopener"><span lang="zh">查看仓库</span><span lang="en">View repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </details>
+      <details class="more" id="p-bayes">
+        <summary>
+          <span class="m-main"><span class="m-title"><span lang="zh">贝叶斯推断：Gibbs、MH 与变分推断</span><span lang="en">Bayesian inference: Gibbs, MH and variational inference</span></span><span class="m-one"><span lang="zh">用 R 手写三种后验估计方法并与解析解对照</span><span lang="en">Three posterior methods hand-written in R, checked against the exact answer</span></span></span>
+          <span class="m-metric mono">Δμ &lt; 0.005</span>
+          <span class="badge solo"><span lang="zh">个人</span><span lang="en">Solo</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="m-body">
+          <p class="role-line" style="margin-top:0"><span lang="zh">独立推导后验、全条件分布和 ELBO，编写采样器与 CAVI，并分析收敛与可信区间。</span><span lang="en">I derived the posterior, full conditionals and ELBO, wrote the samplers and CAVI, and analysed convergence and credible intervals.</span></p>
+          <div class="body2"><div class="metrics stacked">
+  <div class="metric"><div class="v">3</div><div class="k"><span lang="zh">CAVI 两组初始化均 3 次更新收敛</span><span lang="en">CAVI converges in 3 updates from both starts</span></div></div>
+  <div class="metric"><div class="v">43.05<small>%</small></div><div class="k"><span lang="zh">随机游走 MH 接受率</span><span lang="en">Random-walk MH acceptance rate</span></div></div></div>
+  <div class="chart"><p class="chart-title"><span lang="zh">后验均值与解析解对照</span><span lang="en">Posterior means vs exact solution</span></p>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th><span lang="zh">方法</span><span lang="en">Method</span></th><th>μ₁</th><th>μ₂</th></tr></thead><tbody>
+   <tr class="ref"><td><span lang="zh">解析解</span><span lang="en">Exact</span></td><td>2.710268</td><td>−3.145637</td></tr>
+   <tr><td>Gibbs</td><td>2.714452</td><td>−3.144269</td></tr>
+   <tr><td><span lang="zh">MH 采样</span><span lang="en">Random-walk MH</span></td><td>2.707242</td><td>−3.148585</td></tr>
+   <tr><td>CAVI</td><td>2.710268</td><td>−3.145637</td></tr></tbody></table></div></div></div>
+  <p class="caveat"><span lang="zh">二维高斯后验、模拟教学数据。CAVI 均值与解析解一致，但均值场假设略微低估了边际方差。</span><span lang="en">Bivariate Gaussian posterior on simulated teaching data. CAVI matches the exact means, though the mean-field factors slightly understate marginal variances.</span></p>
+          <div class="proj-foot">
+            <ul class="stack"><li>R</li><li>MCMC</li><li>CAVI</li></ul>
+            <a class="quiet" href="https://github.com/xialuote77/bayesian-inference-mcmc-vi" target="_blank" rel="noopener"><span lang="zh">查看仓库</span><span lang="en">View repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </details>
+      <details class="more" id="p-em">
+        <summary>
+          <span class="m-main"><span class="m-title"><span lang="zh">Poisson 混合模型与 EM 算法</span><span lang="en">Poisson mixture models with EM</span></span><span class="m-one"><span lang="zh">类别缺失的计数数据，base R 手写 EM</span><span lang="en">Count data with missing labels; EM hand-written in base R</span></span></span>
+          <span class="m-metric mono"><span lang="zh">12 次收敛</span><span lang="en">12 iters</span></span>
+          <span class="badge solo"><span lang="zh">个人</span><span lang="en">Solo</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="m-body">
+          <p class="role-line" style="margin-top:0"><span lang="zh">独立完成推导、实现、初始化比较和收敛诊断，并用 NumPy 独立复核。</span><span lang="en">Derivation, implementation, initialisation comparison and convergence diagnostics are all mine, cross-checked in NumPy.</span></p>
+          <div class="body2">
+          <div class="metrics stacked">
+            <div class="metric"><div class="v">300+100</div><div class="k"><span lang="zh">未标注 + 已标注观测</span><span lang="en">unlabelled + labelled observations</span></div></div>
+            <div class="metric"><div class="v">&lt;0.001</div><div class="k"><span lang="zh">与 NumPy 复核的对数似然差异</span><span lang="en">log-likelihood gap vs NumPy check</span></div></div>
+          </div>
+          <div class="em">
+            <svg viewBox="0 0 170 170" role="img" aria-label="EM loop: E-step and M-step alternate until convergence">
+              <circle cx="85" cy="85" r="58" fill="none" stroke="var(--line)" stroke-width="2"/>
+              <path id="emPath" d="M85 27 A58 58 0 1 1 84.99 27" fill="none"/>
+              <circle r="5" fill="var(--primary)"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#emPath"/></animateMotion></circle>
+              <rect x="55" y="12" width="60" height="28" rx="4" fill="var(--surface)" stroke="var(--primary)" stroke-width="1.5"/>
+              <text x="85" y="30" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--ink)">E-step</text>
+              <rect x="55" y="130" width="60" height="28" rx="4" fill="var(--surface)" stroke="var(--primary)" stroke-width="1.5"/>
+              <text x="85" y="148" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--ink)">M-step</text>
+              <text x="85" y="84" text-anchor="middle" font-family="var(--mono)" font-size="22" fill="var(--primary)">12</text>
+              <text x="85" y="102" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--muted)">iterations</text>
+            </svg>
+            <p class="em-txt"><span lang="zh">基础模型两种初始化都在 12 次迭代收敛，联合模型为 8 次和 9 次；对数似然全程单调不减，重跑结果与原报告一致。</span><span lang="en">The base model converged in 12 iterations from both starts, the combined model in 8 and 9. Log-likelihood never decreased, and the re-run matched the original report.</span></p>
+          </div>
+        </div>
+        
+          <div class="proj-foot">
+            <ul class="stack"><li>R</li><li>Quarto</li><li>NumPy</li></ul>
+            <a class="quiet" href="https://github.com/xialuote77/poisson-mixture-em" target="_blank" rel="noopener"><span lang="zh">查看仓库</span><span lang="en">View repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="skills" aria-labelledby="h-skills">
+  <div class="wrap">
+    <div class="rail"><h2 id="h-skills"><span lang="zh">技能</span><span lang="en">Skills</span></h2>
+      <p><span lang="zh">技能 × 项目：每个点代表这项技能在该项目里实际用过。点击列名跳到对应项目。</span><span lang="en">Skills × projects: each dot means the skill was actually used in that project. Click a column to jump to it.</span></p></div>
+    <div style="min-width:0">
+      <div class="matrix-wrap">
+        <table class="matrix" id="matrix">
+          <thead><tr>
+            <th scope="col" style="text-align:left;padding-left:16px"><span lang="zh">技能</span><span lang="en">Skill</span></th>
+            <th scope="col" data-col="0"><button type="button" data-go="p-taxi"><span lang="zh">出租车</span><span lang="en">Taxi</span></button></th>
+            <th scope="col" data-col="1"><button type="button" data-go="p-sql">SQL</button></th>
+            <th scope="col" data-col="2"><button type="button" data-go="p-rental"><span lang="zh">租房</span><span lang="en">Rental</span></button></th>
+            <th scope="col" data-col="3"><button type="button" data-go="p-road"><span lang="zh">事故</span><span lang="en">Crash</span></button></th>
+            <th scope="col" data-col="4"><button type="button" data-go="p-income"><span lang="zh">收入</span><span lang="en">Income</span></button></th>
+            <th scope="col" data-col="5"><button type="button" data-go="p-img"><span lang="zh">图像</span><span lang="en">Image</span></button></th>
+            <th scope="col" data-col="6"><button type="button" data-go="p-coral"><span lang="zh">珊瑚鳟</span><span lang="en">Coral</span></button></th>
+            <th scope="col" data-col="7"><button type="button" data-go="p-land"><span lang="zh">遥感</span><span lang="en">Landsat</span></button></th>
+            <th scope="col" data-col="8"><button type="button" data-go="p-bayes"><span lang="zh">贝叶斯</span><span lang="en">Bayes</span></button></th>
+            <th scope="col" data-col="9"><button type="button" data-go="p-em">EM</button></th>
+            <th scope="col" style="text-align:right;padding-right:16px"><span lang="zh">项目数</span><span lang="en">Count</span></th>
+          </tr></thead>
+          <tbody id="mbody"></tbody>
+        </table>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3><span lang="zh">SQL 与数据库</span><span lang="en">SQL &amp; databases</span></h3><p><span lang="zh">多表 JOIN、分组聚合、HAVING、相关子查询、NOT EXISTS、NULL 值处理。</span><span lang="en">Multi-table joins, aggregation, HAVING, correlated subqueries, NOT EXISTS, NULL handling.</span></p></div>
+        <div class="skill"><h3><span lang="zh">Python 与数据加工</span><span lang="en">Python data processing</span></h3><p><span lang="zh">数据采集、清洗、转换、多源整合与特征构建，可处理千万级记录。</span><span lang="en">Collection, cleaning, transformation, multi-source integration and feature building at tens-of-millions scale.</span></p></div>
+        <div class="skill"><h3><span lang="zh">数据校验与建模</span><span lang="en">Validation &amp; modelling</span></h3><p><span lang="zh">严格模式验证、外部验证集构建、按时间切分的模型评估、GLM 与树模型、EM 算法。</span><span lang="en">Strict-mode checks, external validation sets, time-ordered evaluation, GLMs and tree models, EM.</span></p></div>
+        <div class="skill"><h3><span lang="zh">工具与沟通</span><span lang="en">Tools &amp; communication</span></h3><p><span lang="zh">Excel 台账与对账、Jupyter、Matplotlib、seaborn；能独立撰写英文技术报告。</span><span lang="en">Excel ledgers and reconciliation, Jupyter, Matplotlib, seaborn; technical report writing in English.</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experience" aria-labelledby="h-exp">
+  <div class="wrap">
+    <div class="rail"><h2 id="h-exp"><span lang="zh">教育与经历</span><span lang="en">Education &amp; experience</span></h2></div>
+    <div>
+      <ol class="timeline">
+        <li><span class="when">2027.03</span>
+          <div><h3><span lang="zh">莫纳什大学 · 数据科学硕士</span><span lang="en">Monash University · Master of Data Science</span></h3>
+          <p class="where"><span lang="zh">已获有条件录取，计划入学</span><span lang="en">Conditional offer, planned start</span></p></div></li>
+        <li><span class="when">2024.02 – 2026.12</span>
+          <div><h3><span lang="zh">墨尔本大学 · 理学学士（数据科学）</span><span lang="en">University of Melbourne · BSc (Data Science)</span></h3>
+          <p class="where"><span lang="zh">澳大利亚墨尔本 · 预计 2026.12 毕业</span><span lang="en">Melbourne, Australia · expected Dec 2026</span></p>
+          <p><span lang="zh">相关课程：机器学习、遥感与 GIS、统计建模、数据库。</span><span lang="en">Relevant coursework: machine learning, remote sensing &amp; GIS, statistical modelling, databases.</span></p></div></li>
+        <li><span class="when">2024.11 – 2025.02</span>
+          <div><h3><span lang="zh">陕西美芙康生物科技有限公司 · 采购助理</span><span lang="en">Shaanxi Meifukang Biotech · Purchasing Assistant</span></h3>
+          <p class="where"><span lang="zh">西安</span><span lang="en">Xi'an, China</span></p>
+          <p><span lang="zh">用 Excel 维护采购台账和供应商月度记录，通过公式整理订单数据、核对采购记录、跟踪订单。</span><span lang="en">Maintained purchasing ledgers and monthly supplier records in Excel; used formulas to organise order data, reconcile records and track orders.</span></p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="publication" aria-labelledby="h-pub">
+  <div class="wrap">
+    <div class="rail"><h2 id="h-pub"><span lang="zh">学术成果</span><span lang="en">Publication</span></h2></div>
+    <div class="pub">
+      <p class="t">Mathematics model and traditional cultural interest's analysis and solution</p>
+      <p class="s"><span lang="zh">Proceedings of SPIE, Vol. 12725, 127250I, 2023 · 第四作者</span><span lang="en">Proceedings of SPIE, Vol. 12725, 127250I, 2023 · fourth author</span></p>
+      <p class="s"><a href="https://doi.org/10.1117/12.2679150" target="_blank" rel="noopener" class="mono">DOI 10.1117/12.2679150</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    <div class="rail"><h2 id="h-contact"><span lang="zh">联系我</span><span lang="en">Contact</span></h2>
+      <p><span lang="zh">邮件最快。</span><span lang="en">Email is the fastest way to reach me.</span></p></div>
+    <div>
+      <div class="contact-list">
+        <div class="crow"><span class="micro"><span lang="zh">邮箱</span><span lang="en">Email</span></span><span class="val">charlottlyu@163.com</span>
+          <button class="btn btn-secondary" style="height:36px;padding:0 12px;font-size:14px" type="button" data-copy="charlottlyu@163.com" data-toast="contactToast" id="contactCopy"><span lang="zh">复制</span><span lang="en">Copy</span></button></div>
+        <div class="crow"><span class="micro">Gmail</span><span class="val">kunze.lyu26@gmail.com</span>
+          <button class="btn btn-secondary" style="height:36px;padding:0 12px;font-size:14px" type="button" data-copy="kunze.lyu26@gmail.com" data-toast="contactToast" id="contactCopy2"><span lang="zh">复制</span><span lang="en">Copy</span></button></div>
+        <div class="crow"><span class="micro">GitHub</span><span class="val">github.com/xialuote77</span>
+          <a class="quiet" href="https://github.com/xialuote77" target="_blank" rel="noopener"><span lang="zh">打开</span><span lang="en">Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+        <div class="crow"><span class="micro">LinkedIn</span><span class="val">linkedin.com/in/kunze-lyu26</span>
+          <a class="quiet" href="https://www.linkedin.com/in/kunze-lyu26" target="_blank" rel="noopener"><span lang="zh">打开</span><span lang="en">Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+      </div>
+      <p class="toast" id="contactToast" role="status" aria-live="polite" style="margin-top:12px"></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <span lang="zh">吕昆泽</span><span lang="en">Kunze Lyu</span></span>
+    <span><span lang="zh">项目数字均可在对应 GitHub 仓库中核对</span><span lang="en">Every project figure can be checked in its GitHub repo</span></span>
+  </div>
+</footer>
+<div id="tip" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function en(){return root.getAttribute('data-lang')==='en'}
+
+  /* language + theme */
+  var langBtn=document.getElementById('langBtn'), themeBtn=document.getElementById('themeBtn');
+  function applyLang(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l==='en'?'en':'zh-CN');langBtn.textContent=l==='en'?'中文':'EN'}
+  applyLang(get('lang')||'zh');
+  langBtn.addEventListener('click',function(){var l=en()?'zh':'en';applyLang(l);set('lang',l)});
+  var t=get('theme'); if(t) root.setAttribute('data-theme',t);
+  function isDark(){var a=root.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+  themeBtn.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);set('theme',n)});
+
+  /* copy */
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var text=b.getAttribute('data-copy'), toast=document.getElementById(b.getAttribute('data-toast'));
+      function ok(){toast.textContent=(en()?'Copied: ':'已复制：')+text;setTimeout(function(){toast.textContent=''},2500)}
+      function fail(){toast.textContent=(en()?'Copy blocked. Email: ':'无法自动复制，邮箱：')+text}
+      try{navigator.clipboard.writeText(text).then(ok,fail)}catch(e){fail()}
+    });
+  });
+
+  /* skills matrix (from project tech stacks) */
+  var rows=[
+    ['SQL / MySQL','SQL / MySQL',[0,1,0,0,0,0,0,0,0,0]],
+    ['PySpark / Spark ML','PySpark / Spark ML',[1,0,0,0,0,0,0,0,0,0]],
+    ['pandas / NumPy','pandas / NumPy',[1,0,1,1,0,0,0,0,0,1]],
+    ['scikit-learn','scikit-learn',[0,0,1,1,1,1,0,0,0,0]],
+    ['地理空间 / 遥感','Geospatial / remote sensing',[1,0,1,0,0,0,0,1,0,0]],
+    ['网页数据采集','Web scraping',[0,0,1,0,0,0,0,0,0,0]],
+    ['分类 / 聚类','Classification / clustering',[0,0,0,1,1,1,0,1,0,0]],
+    ['统计建模（GLM / EM / 贝叶斯）','Statistical models (GLM / EM / Bayesian)',[1,0,0,0,0,0,1,0,1,1]],
+    ['R','R',[0,0,0,0,0,0,1,0,1,1]]
+  ];
+  var mb=document.getElementById('mbody');
+  rows.forEach(function(r){
+    var tr=document.createElement('tr');
+    var th=document.createElement('th');th.scope='row';
+    th.innerHTML='<span lang="zh">'+r[0]+'</span><span lang="en">'+r[1]+'</span>';tr.appendChild(th);
+    var n=0;r[2].forEach(function(v,i){var td=document.createElement('td');td.setAttribute('data-col',i);td.innerHTML='<i class="cell'+(v?'':' no')+'"></i>';n+=v;tr.appendChild(td)});
+    var c=document.createElement('td');c.className='cnt';c.textContent=n;tr.appendChild(c);
+    mb.appendChild(tr);
+  });
+  var matrix=document.getElementById('matrix');
+  function hl(col){matrix.querySelectorAll('[data-col]').forEach(function(el){el.classList.toggle('col-hl',col!==null&&el.getAttribute('data-col')===col)})}
+  matrix.querySelectorAll('thead [data-col]').forEach(function(th){
+    var col=th.getAttribute('data-col');
+    th.addEventListener('mouseenter',function(){hl(col)});th.addEventListener('mouseleave',function(){hl(null)});
+    var b=th.querySelector('button');b.addEventListener('focus',function(){hl(col)});b.addEventListener('blur',function(){hl(null)});
+    b.addEventListener('click',function(){var p=document.getElementById(b.getAttribute('data-go'));if(p.tagName==='DETAILS'&&!p.open){p.open=true}p.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});p.classList.remove('flash');void p.offsetWidth;p.classList.add('flash')});
+  });
+
+  /* tabs */
+  document.querySelectorAll('[data-tabs]').forEach(function(box){
+    var tabs=[].slice.call(box.querySelectorAll('[role=tab]'));
+    function sel(tab){tabs.forEach(function(t){var on=t===tab;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;var p=document.getElementById(t.getAttribute('aria-controls'));p.hidden=!on;if(on){p.classList.remove('enter');void p.offsetWidth;p.classList.add('enter');replay(p)}})}
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){sel(t)});
+      t.addEventListener('keydown',function(e){var j=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;if(j===null)return;e.preventDefault();var n=tabs[(j+tabs.length)%tabs.length];n.focus();sel(n)});
+    });
+  });
+
+  /* count-up + bar reveal: values are final in the HTML; only elements below the fold are reset before animating */
+  function fmt(v,d){return d?v.toFixed(d):Math.round(v).toLocaleString('en-US')}
+  function count(el){var target=parseFloat(el.getAttribute('data-count')),d=+(el.getAttribute('data-dec')||0),t0=null;
+    function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1100);k=1-Math.pow(1-k,3);el.textContent=fmt(target*k,d);if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step)}
+  function replay(scope){if(reduce)return;scope.querySelectorAll('.anim').forEach(function(a){a.classList.add('pre');void a.offsetWidth;requestAnimationFrame(function(){a.classList.remove('pre')})})}
+  if(!reduce&&'IntersectionObserver' in window){
+    var vh=innerHeight;
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);
+      if(e.target.hasAttribute('data-count'))count(e.target);
+      else{var ck=e.target.querySelectorAll('.ck');ck.forEach(function(c,i){c.style.transitionDelay=(i*70)+'ms'});e.target.classList.remove('pre')}
+    })},{threshold:.35});
+    document.querySelectorAll('[data-count]').forEach(function(el){if(el.getBoundingClientRect().top>vh){io.observe(el)}else{count(el)}});
+    document.querySelectorAll('.anim').forEach(function(el){if(el.offsetParent===null)return;if(el.getBoundingClientRect().top>vh*0.9){el.classList.add('pre');io.observe(el)}});
+  }
+
+
+  /* weather x time heatmap — values transcribed from weather_time_buffer_heatmap.pdf */
+  var HEAT={
+    jfk:[[18.6,1758,20.3,20552,24.5,23341,30.6,49778,32.8,31911,21.6,5434],[19.0,315,20.9,3538,25.0,3500,33.7,7373,37.7,5603,20.6,932],[null,36,32.1,393,26.0,426,24.8,815,22.1,426,null,26],[18.0,287,20.6,3930,21.6,3600,30.4,4011,35.7,2880,20.2,440],[20.7,419,21.4,4987,25.5,8681,30.7,25339,34.1,18255,20.5,2012],[17.0,1197,19.5,13212,24.4,7468,30.1,9377,36.1,8974,21.2,2970]],
+    lga:[[9.8,2429,13.4,38545,17.2,57602,20.7,62892,22.3,31133,17.1,1970],[8.9,479,14.6,5975,18.6,6849,24.6,8501,25.1,4590,16.9,301],[10.2,57,13.5,500,23.9,715,17.6,965,18.5,285,null,14],[7.2,327,14.6,5514,17.6,6676,22.9,5313,26.1,2240,17.1,141],[9.6,552,14.4,6399,18.1,15694,21.2,21372,23.6,10924,17.9,533],[7.8,891,13.4,12522,17.1,10244,24.1,7366,26.4,4282,17.7,376]]
+  };
+  var WX=[['无降水','No precipitation'],['降水','Precipitation'],['降雪','Snow'],['雾 / 低能见度','Fog / low visibility'],['大风','High wind'],['高湿度','High humidity']];
+  var HRS=['00-03','04-07','08-11','12-15','16-19','20-23'];
+  var heat=document.getElementById('heat'),heatNote=document.getElementById('heatNote'),ap='jfk';
+  function L(z,e){return '<span lang="zh">'+z+'</span><span lang="en">'+e+'</span>'}
+  function drawHeat(){
+    var d=HEAT[ap],h='<div></div>'+HRS.map(function(x){return '<div class="hc">'+x+'</div>'}).join(''),mx=0,mi=[0,0];
+    d.forEach(function(r,i){for(var j=0;j<6;j++){if(r[j*2]!==null&&r[j*2]>mx){mx=r[j*2];mi=[i,j]}}});
+    d.forEach(function(r,i){
+      h+='<div class="hr" role="rowheader">'+L(WX[i][0],WX[i][1])+'</div>';
+      for(var j=0;j<6;j++){var v=r[j*2],n=r[j*2+1],nn=n.toLocaleString('en-US');
+        var tip=WX[i][1]+' · '+HRS[j]+(v===null?' · n='+nn+' (too few)':' · '+v.toFixed(1)+' min · n='+nn);
+        if(v===null){h+='<div class="cell2 na" role="cell" data-tip="'+tip+'">–<small>n='+nn+'</small></div>';continue}
+        var k=Math.max(0,Math.min(1,(v-5)/35)),pct=Math.round(k*100);
+        h+='<div class="cell2'+(i===mi[0]&&j===mi[1]?' max':'')+'" role="cell" data-tip="'+tip+'" style="background:color-mix(in oklab,var(--heat-hi) '+pct+'%,var(--heat-lo));color:var('+(k>.5?'--heat-ink-hi':'--heat-ink-lo')+')">'+v.toFixed(1)+'<small>n='+(n>=1000?(n/1000).toFixed(1)+'k':n)+'</small></div>'}
+    });
+    heat.innerHTML=h;
+    heatNote.innerHTML=ap==='jfk'
+      ?L('JFK 在 16–19 点遇到降水时缓冲最大（37.7 分钟，已描边）；同一时段无降水为 32.8 分钟。斜纹格子样本过少，不显示数值。','JFK peaks at 16–19 h in precipitation (37.7 min, outlined) versus 32.8 min with no precipitation. Hatched cells have too few trips to show.')
+      :L('LaGuardia 的缓冲整体小得多，最高为 16–19 点高湿度时的 26.4 分钟（已描边）；凌晨普遍不到 10 分钟。','LaGuardia buffers are much smaller overall; the highest is 26.4 min at 16–19 h in high humidity (outlined), and early-morning buffers are mostly under 10 min.');
+  }
+  document.querySelectorAll('.seg-b').forEach(function(b){b.addEventListener('click',function(){ap=b.getAttribute('data-ap');document.querySelectorAll('.seg-b').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawHeat()})});
+  drawHeat();
+
+  document.querySelectorAll('details.more').forEach(function(d){d.addEventListener('toggle',function(){if(d.open)replay(d)})});
+  /* tooltip */
+  var tip=document.getElementById('tip');
+  document.addEventListener('pointermove',function(e){var t=e.target.closest&&e.target.closest('[data-tip]');if(!t){tip.classList.remove('on');return}tip.textContent=t.getAttribute('data-tip');tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.classList.add('on')});
+  document.addEventListener('pointerleave',function(){tip.classList.remove('on')});
+
+  /* scrollspy */
+  var links=[].slice.call(document.querySelectorAll('.nav ul a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function spy(){var y=scrollY+120,cur=-1;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('active',i===cur)})}
+  addEventListener('scroll',spy,{passive:true});spy();
+
+  /* pipeline canvas */
+  var cv=document.getElementById('flow'),cx=cv.getContext('2d'),W=0,H=0,dots=[];
+  function css(n){return getComputedStyle(root).getPropertyValue(n).trim()}
+  function size(){var r=cv.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+  // gates at 25%, 50%, 75% of width; survival rate per gate is illustrative
+  var gates=[.25,.5,.75],keep=[.35,.45,.6];
+  function spawn(x){var lane=Math.random();return{x:x,y:H*(.15+.7*lane),vy:0,lane:lane,s:.9+Math.random()*.6,alive:true,stage:0,fade:1}}
+  function init(){dots=[];for(var i=0;i<140;i++)dots.push(spawn(Math.random()*W))}
+  function frame(){
+    var P=css('--primary'),B=css('--base'),L=css('--line');
+    cx.clearRect(0,0,W,H);
+    // gate lines
+    cx.strokeStyle=L;cx.lineWidth=1;cx.setLineDash([3,4]);
+    gates.forEach(function(g){cx.beginPath();cx.moveTo(W*g,8);cx.lineTo(W*g,H-8);cx.stroke()});
+    cx.setLineDash([]);
+    // funnel guide
+    dots.forEach(function(d){
+      var g=gates[d.stage];
+      if(g!==undefined&&d.x>=W*g&&d.alive&&!d.passed){
+        if(Math.random()<keep[d.stage]){d.stage++;}else{d.alive=false}
+      }
+      // converge toward centre as stages advance
+      var target=H*(.5+(d.lane-.5)*(.7-d.stage*.18));
+      d.y+=(target-d.y)*.04;
+      d.x+=d.s*(d.alive?1.1:.4);
+      if(!d.alive){d.fade-=.04;d.y+=.6}
+      if(d.x>W+6||d.fade<=0){Object.assign(d,spawn(-6))}
+      var r=d.stage>=3?3.2:d.stage===2?2.6:2.1;
+      cx.globalAlpha=Math.max(0,d.fade)*(d.alive?1:.5);
+      cx.fillStyle=d.stage>=2&&d.alive?P:B;
+      cx.beginPath();cx.arc(d.x,d.y,r,0,6.283);cx.fill();
+    });
+    cx.globalAlpha=1;
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  size();init();
+  if(reduce){for(var k=0;k<200;k++){/* settle */}frame()}else requestAnimationFrame(frame);
+  addEventListener('resize',function(){size();if(reduce)frame()});
+})();
+</script>
+
+</body>
+</html>
