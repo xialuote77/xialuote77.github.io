@@ -249,6 +249,10 @@ table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
 .timeline p{margin-top:6px;font-size:15px;max-width:66ch}
 @media (max-width:600px){.timeline li{grid-template-columns:1fr}}
 
+.courses{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;max-width:600px}
+.courses li{display:flex;gap:10px;align-items:baseline;font-size:14px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.courses .code{font:500 12px/1 var(--mono);color:var(--primary);min-width:76px;flex:none}
+@media (max-width:600px){.courses{grid-template-columns:1fr}}
 .pub{border-left:2px solid var(--primary);padding:4px 0 4px 20px;max-width:72ch}
 .pub .t{font-weight:500}
 .pub .s{margin-top:6px;font-size:14px;color:var(--muted)}
@@ -815,7 +819,17 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
         <li><span class="when">2024.02 – 2026.12</span>
           <div><h3><span lang="zh">墨尔本大学 · 理学学士（数据科学）</span><span lang="en">University of Melbourne · BSc (Data Science)</span></h3>
           <p class="where"><span lang="zh">澳大利亚墨尔本 · 预计 2026.12 毕业</span><span lang="en">Melbourne, Australia · expected Dec 2026</span></p>
-          <p><span lang="zh">相关课程：机器学习、遥感与 GIS、统计建模、数据库。</span><span lang="en">Relevant coursework: machine learning, remote sensing &amp; GIS, statistical modelling, databases.</span></p></div></li>
+          <p class="micro" style="margin-top:14px"><span lang="zh">数据科学专业课</span><span lang="en">Data Science major subjects</span></p>
+          <ul class="courses">
+            <li><span class="code">COMP20008</span><span lang="zh">数据处理基础</span><span lang="en">Elements of Data Processing</span></li>
+            <li><span class="code">INFO20003</span><span lang="zh">数据库系统</span><span lang="en">Database Systems</span></li>
+            <li><span class="code">MAST20004</span><span lang="zh">概率论</span><span lang="en">Probability</span></li>
+            <li><span class="code">MAST20005</span><span lang="zh">统计学</span><span lang="en">Statistics</span></li>
+            <li><span class="code">MAST30025</span><span lang="zh">线性统计模型</span><span lang="en">Linear Statistical Models</span></li>
+            <li><span class="code">COMP30027</span><span lang="zh">机器学习</span><span lang="en">Machine Learning</span></li>
+            <li><span class="code">MAST30027</span><span lang="zh">现代应用统计</span><span lang="en">Modern Applied Statistics</span></li>
+            <li><span class="code">MAST30034</span><span lang="zh">应用数据科学</span><span lang="en">Applied Data Science</span></li>
+          </ul></div></li>
         <li><span class="when">2024.11 – 2025.02</span>
           <div><h3><span lang="zh">陕西美芙康生物科技有限公司 · 采购助理</span><span lang="en">Shaanxi Meifukang Biotech · Purchasing Assistant</span></h3>
           <p class="where"><span lang="zh">西安</span><span lang="en">Xi'an, China</span></p>
